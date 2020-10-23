@@ -7,6 +7,19 @@
  * @author   Taylor Otwell <taylor@laravel.com>
  */
 
+ /**
+  * Base de datos
+  *
+  *CREATE TABLE `yourpills`.`medicamento`(
+	*`ID` INT NOT NULL AUTO_INCREMENT,
+    *`Nombre` VARCHAR(45) NOT NULL,
+    *`Cantidad` INT NOT NULL,
+    *`Dias` INT NOT NULL,
+    *`Franja_Horas` INT NOT NULL,
+    *PRIMARY KEY (`ID`)
+  * );
+  */
+
 $uri = urldecode(
     parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)
 );
