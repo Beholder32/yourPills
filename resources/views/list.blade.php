@@ -5,30 +5,22 @@ function createMsg($string)
     $array = array();
     foreach ($dayArray as $day) {
         switch ($day) {
-            case 1:
-                array_push($array, "lunes");
-                break;
-            case 2:
-                array_push($array, "martes");
-                break;
-            case 3:
-                array_push($array, "miercoles");
-                break;
-            case 4:
-                array_push($array, "jueves");
-                break;
-            case 5:
-                array_push($array, "viernes");
-                break;
-            case 6:
-                array_push($array, "sabado");
-                break;
-            case 7:
-                array_push($array, "domingo");
-                break;
+            case 0: array_push($array, "domingo"); break;
+            case 1: array_push($array, "lunes"); break;
+            case 2: array_push($array, "martes"); break;
+            case 3: array_push($array, "miercoles"); break;
+            case 4: array_push($array, "jueves"); break;
+            case 5: array_push($array, "viernes"); break;
+            case 6: array_push($array, "sabado"); break;
         }
     }
-    $msg = join(', ', $array);
+    if (sizeof($array) > 1) {
+        $lastDay = array_pop($array);
+        $msg = join(', ', $array) . ' y ' . $lastDay;
+    }
+    else {
+        $msg = join(', ', $array);
+    }
     return $msg;
 }
 ?>
@@ -59,7 +51,7 @@ function createMsg($string)
             <?php
             $msg = createMsg($row->Dias);
             ?>
-            Tomar {{ $row -> Cantidad }} de {{ $row -> Nombre }} todos los {{ $msg }} cada {{ $row -> Franja_Horas }} horas.
+            Tomar {{ $row -> Cantidad }} de {{ $row -> Nombre }} todos los {{ $msg }} cada {{ $row -> Franja_Horas }} hora(s).
         </div>
         @endforeach
         @endif
@@ -70,7 +62,7 @@ function createMsg($string)
         $(document).ready(function() {
             $('.information').hide();
             $('.rows').click(function() {
-                $(this).next('.information').slideDown().siblings('.information').slideUp();
+                $(this).next('.information').slideToggle().siblings('.information').slideUp();
             });
         });
     </script>

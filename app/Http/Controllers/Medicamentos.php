@@ -30,8 +30,6 @@ class Medicamentos extends Controller
         $imput -> Dias = $day;
         $imput -> Franja_Horas = $req -> horas;
         $imput -> save();  // Guardo todos los elementos en una row de la Base de Datos.
-
-        return redirect('/');
     }
 
     public function index() {

@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Your Pills</title>
 
     <!-- Fonts -->
@@ -16,7 +18,7 @@
 
 <body>
 
-    <form action="submit" method="POST" class="authbox">
+    <form action="submit" method="POST" class="authbox" id="form">
         @csrf
         <div class="title">Usuario</div>
         <div class="subTitle">Introduce los datos del medicamento</div>
@@ -53,7 +55,7 @@
                 </li>
                 <li class="list-item">
                     <h5>Domingo</h5>
-                    <input type="checkbox" name="domingo" value="7">
+                    <input type="checkbox" name="domingo" value="0">
                 </li>
             </ul>
         </div>
@@ -64,7 +66,7 @@
             <input type="submit" value="Cargar" class="submitButton">
         </div>
         <div class="redirect" id="caja_salida"><a style="text-decoration: none; color: #888;" href="{{ url('list')}}">Click aqui para ver la lista</a></div>
-
+        <?php echo csrf_field(); ?>
     </form>
 
     <script type="text/javascript">
@@ -78,9 +80,29 @@
                 }
 
             });
+            $('#form').submit(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: 'submit',
+                    type: 'post',
+                    data: $('#form').serialize(),
+                    cache: false,
+                    success: function() {
+                        let form = document.getElementById('form');
+                        for (let i = 0; i < form.elements.length; i++) {
+                            if (form.elements[i].type == 'checkbox') {
+                                form.elements[i].checked = false;
+                            }
+                            else if (form.elements[i].type != 'submit' && form.elements[i].type != 'hidden') {
+                                form.elements[i].value = '';
+                                form.elements[i].selectedIndex = 0;
+                            }
+                        }
+                    }
+                });
+            });
         });
     </script>
-
 </body>
 
 </html>
