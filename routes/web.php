@@ -18,4 +18,3 @@ Route::get('/', function () {
 });
 
 Route::post('submit','Medicamentos@save');
-

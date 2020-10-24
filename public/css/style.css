@@ -18,10 +18,10 @@ body {
     border: 0;
     background: white;
     border-radius: 5px;
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     color: #FFFFFF;
     font-size: 18px;
-    width: 480px;
+    width: 520px;
     user-select: none;
     line-height: 1;
     padding: 40px;
@@ -29,7 +29,6 @@ body {
 }
 
 .title {
-    /*letras de Bienvenido!*/
     outline: 0;
     color: #555;
     font-weight: 300;
@@ -55,7 +54,7 @@ body {
 }
 
 .inputType {
-    /*letras de nombre de usuario, contrseña...*/
+    /*letras de nombre de nombre, cantidad...*/
     color: #666;
     letter-spacing: .5px;
     text-transform: uppercase;
@@ -82,24 +81,6 @@ body {
     height: 40px;
     padding: 10px;
     border-color: rgba(0, 0, 0, .3);
-    font-family: inherit;
-}
-
-.forgotText {
-    /*boton de he olvidado mi contraseña*/
-    padding: 2px 4px;
-    height: auto;
-    display: block;
-    padding-left: 0;
-    padding-right: 0;
-    margin-bottom: 20px;
-    color: #7289da;
-    margin-top: 4px;
-    width: auto;
-    font-size: 14px;
-    font-weight: 500;
-    background: none;
-    border: none;
     font-family: inherit;
 }
 
@@ -138,4 +119,33 @@ body {
     color: #FFF;
     line-height: 24px;
     font-family: inherit;
+}
+
+.list {
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.list-item {
+    margin: 0 .5em;
+}
+
+h5 {
+    color: #888;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checkboxDate {
+    display: flex;
+    min-height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
