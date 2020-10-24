@@ -9,8 +9,8 @@
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    <link rel="stylesheet" href="../resources/css/estilos.css">
-    <script src="../resources/js/programa.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/programa.js"></script>
 </head>
 
 <body>
