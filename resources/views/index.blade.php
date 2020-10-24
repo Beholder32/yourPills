@@ -21,7 +21,7 @@
         <div class="title">Usuario</div>
         <div class="subTitle">Introduce los datos del medicamento</div>
         <h5 class="inputType">Nombre</h5>
-        <input class="input" type="text" name="nombre" maxlength="45" required>
+        <input class="input" type="text" name="nombre" maxlength="40" required>
         <h5 class="inputType">Cantidad de unidades</h5>
         <input class="input" type="text" name="cantidad" oninput="this.value = onlyInt(this.value)" required>
         <h5 class="inputType">Dias de consumo</h5>
@@ -58,12 +58,12 @@
             </ul>
         </div>
         <h5 class="inputType">Franja horaria (Cada cuantas horas)</h5>
-        <input class="input" type="text" name="horas" oninput="this.value = onlyInt(this.value)" required>
+        <input class="input" type="text" name="horas" oninput="this.value = onlyIntAnd24(this.value)" required>
         <br><br><br>
         <div class="buttonContents">
             <input type="submit" value="Cargar" class="submitButton">
         </div>
-        <div id="caja_salida"></div>
+        <div class="redirect" id="caja_salida"><a style="text-decoration: none; color: #888;" href="{{ url('list')}}">Click aqui para ver la lista</a></div>
 
     </form>
 

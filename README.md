@@ -14,3 +14,7 @@ CREATE TABLE `yourpills`.`medicamento`(
     `Franja_Horas` INT NOT NULL,
 PRIMARY KEY (`ID`));
 ```
+
+Puedes modificar la información relacionada con tu base de datos en el archivo `.env`.
+
+Posteriormente ejecutar el comando `php artisan serve` y acceder a la ruta que aparece en la consola (por defecto 127.0.0.1:8000), para acceder al servidor.

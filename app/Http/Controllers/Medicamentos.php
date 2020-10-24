@@ -25,12 +25,17 @@ class Medicamentos extends Controller
         $day .= $req -> jueves;
         $day .= $req -> viernes;
         $day .= $req -> sabado;
-        $day .= $req -> domingo;
+        $day .= $req -> domingo;  // Genero detecto todas las checkbox seleccionadas y las uno.
 
         $imput -> Dias = $day;
         $imput -> Franja_Horas = $req -> horas;
-        $imput -> save();
+        $imput -> save();  // Guardo todos los elementos en una row de la Base de Datos.
 
         return redirect('/');
+    }
+
+    public function index() {
+        $rows = \App\Imputs::all();  // Sacamos todas las rows de la base de datos definida en el Model `Imputs`.
+        return view('list', compact('rows'));  // Se lo pasamos a la view `list.blade.php`.
     }
 }

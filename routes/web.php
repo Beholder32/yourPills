@@ -19,6 +19,4 @@ Route::get('/', function () {
 
 Route::post('submit','Medicamentos@save');
 
-Route::get('list', function () {
-    return view('list');
-});
+Route::get('list', 'Medicamentos@index');
