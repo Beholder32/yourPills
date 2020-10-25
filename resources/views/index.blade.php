@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>Your Pills</title>
 
     <!-- Fonts -->
@@ -17,15 +15,15 @@
 </head>
 
 <body>
-
     <form action="submit" method="POST" class="authbox" id="form">
         @csrf
+        <!-- Necesario para hacer post -->
         <div class="title">Usuario</div>
         <div class="subTitle">Introduce los datos del medicamento</div>
         <h5 class="inputType">Nombre</h5>
         <input class="input" type="text" name="nombre" maxlength="40" required>
         <h5 class="inputType">Cantidad de unidades</h5>
-        <input class="input" type="text" name="cantidad" oninput="this.value = onlyInt(this.value)" required>
+        <input class="input" type="text" name="cantidad" oninput="this.value = onlyInt(this.value)" maxlength="9" required>
         <h5 class="inputType">Dias de consumo</h5>
         <div class="checkboxDate">
             <ul class="list">
@@ -67,12 +65,13 @@
         </div>
         <div class="redirect" id="caja_salida"><a style="text-decoration: none; color: #888;" href="{{ url('list')}}">Click aqui para ver la lista</a></div>
         <?php echo csrf_field(); ?>
+        <!-- Token csrf -->
     </form>
 
     <script type="text/javascript">
         $(document).ready(function() {
             $('.submitButton').click(function() {
-                checked = $("input[type=checkbox]:checked").length;
+                checked = $("input[type=checkbox]:checked").length; /* Check de que al menos 1 checkbox está marcada. */
 
                 if (!checked) {
                     alert("Debes seleccionar al menos 1 checkbox.");
@@ -81,6 +80,7 @@
 
             });
             $('#form').submit(function(e) {
+                /* Cancelar la acción de redirigir a subdominio pero si realizar el post. */
                 e.preventDefault();
                 $.ajax({
                     url: 'submit',
@@ -90,10 +90,10 @@
                     success: function() {
                         let form = document.getElementById('form');
                         for (let i = 0; i < form.elements.length; i++) {
+                            /* Resetear los elementos del formulario */
                             if (form.elements[i].type == 'checkbox') {
                                 form.elements[i].checked = false;
-                            }
-                            else if (form.elements[i].type != 'submit' && form.elements[i].type != 'hidden') {
+                            } else if (form.elements[i].type != 'submit' && form.elements[i].type != 'hidden') {
                                 form.elements[i].value = '';
                                 form.elements[i].selectedIndex = 0;
                             }

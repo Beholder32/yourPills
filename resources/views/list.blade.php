@@ -3,7 +3,7 @@ function createMsg($string)
 {
     $dayArray = str_split($string, 1);
     $array = array();
-    foreach ($dayArray as $day) {
+    foreach ($dayArray as $day) { /* Sacar los dias de la array */
         switch ($day) {
             case 0: array_push($array, "domingo"); break;
             case 1: array_push($array, "lunes"); break;
