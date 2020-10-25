@@ -17,6 +17,6 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::post('submit','Medicamentos@save');
+Route::post('submit','Medicamentos@save');  // Guardar la información del form en la base de datos.
 
-Route::get('list', 'Medicamentos@index');
+Route::get('list', 'Medicamentos@index');  // Sacar la información de la base de datos y ponerla en forma de lista.

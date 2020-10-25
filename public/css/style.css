@@ -154,12 +154,14 @@ h5 {
     cursor: pointer;
     padding: 9px;
     position: relative;
-    border: 2px solid #888;
+    /* border: 2px solid #888; */
+    border-bottom: 2px solid #888;
 }
 
 .information {
     color: #888;
     display: flex;
+    padding: 10px;
 }
 
 .emptyArray {
