@@ -5,7 +5,11 @@
     @if(!empty($rows))
     <div class="title">Lista de medicamentos</div>
     @foreach ($rows as $row)
-    <p class="rows" data-rowId={{ $row -> id }}> {{ $row -> Nombre }}</p>
+    <div id="row" class="rows">
+        <p id="name" class="text" data-rowId={{ $row -> id }}> {{ $row -> Nombre }}</p>
+        <button id="edit" class="btn">Edit</button>
+        <button id="delete" class="btn">Del</button>
+    </div>
     <div class="information">
         <?php
         $msg = createMsg($row->Dias);
@@ -14,14 +18,20 @@
     </div>
     @endforeach
     @endif
-    <div class="redirect" id="caja_salida"><a style="text-decoration: none; color: #888;" href="{{ url('/')}}">Click aqui para volver al formulario</a></div>
+    <div class="redirect" id="caja_salida"><a style="text-decoration: none; color: #888;" href="{{ url('/')}}">Click aquí para volver al formulario</a></div>
 </div>
 
 <script type="text/javascript">
     $(document).ready(function() {
         $('.information').hide();
-        $('.rows').click(function() {
-            $(this).next('.information').slideToggle().siblings('.information').slideUp();
+        $('#edit').click(function() {
+        });
+
+        $('#delete').click(function() {
+        });
+
+        $('.text').click(function() {
+            $(this).parent().next('.information').slideToggle().siblings('.information').slideUp();
         });
     });
 </script>
