@@ -5,9 +5,12 @@
     @if(!empty($rows))
     <div class="title">Lista de medicamentos</div>
     @foreach ($rows as $row)
-    <div id="row" class="rows">
-        <p id="name" class="text" data-rowId={{ $row -> id }}> {{ $row -> Nombre }}</p>
-        <button id="edit" class="btn">Edit</button>
+    <div id="row" class="rows" data-rowId={{ $row -> id }}>
+        <p id="name" class="text"> {{ $row -> Nombre }}</p>
+        <?php
+        $link = 'edit/' . $row -> id;
+        ?>
+        <button id="edit" class="btn" onclick="window.location='{{ url($link) }}'">Edit</button>
         <button id="delete" class="btn">Del</button>
     </div>
     <div class="information">
@@ -24,10 +27,25 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.information').hide();
-        $('#edit').click(function() {
-        });
 
-        $('#delete').click(function() {
+        $('.rows #delete').click(function() {
+            let id = $(this).parent().attr('data-rowId');  // Eliminar la row con este id.
+            if (confirm("Seguro que quieres eliminar?")) {
+                $.ajax({
+                    url: "{{ route('list.removerow') }}",
+                    method: "get",
+                    data: {
+                        id: id
+                    },
+                    success: function(data) {
+                        // Recarga al eliminar para ver cambios
+                        window.location.href="{{ url('list') }}";
+                    }
+                });
+            }
+            else {
+                return false;
+            }
         });
 
         $('.text').click(function() {
@@ -44,27 +62,13 @@ function createMsg($string)
     $array = array();
     foreach ($dayArray as $day) { /* Sacar los dias de la array */
         switch ($day) {
-            case 0:
-                array_push($array, "domingo");
-                break;
-            case 1:
-                array_push($array, "lunes");
-                break;
-            case 2:
-                array_push($array, "martes");
-                break;
-            case 3:
-                array_push($array, "miercoles");
-                break;
-            case 4:
-                array_push($array, "jueves");
-                break;
-            case 5:
-                array_push($array, "viernes");
-                break;
-            case 6:
-                array_push($array, "sabado");
-                break;
+            case 1: array_push($array, "lunes"); break;
+            case 2: array_push($array, "martes"); break;
+            case 3: array_push($array, "miercoles"); break;
+            case 4: array_push($array, "jueves"); break;
+            case 5: array_push($array, "viernes"); break;
+            case 6: array_push($array, "sabado"); break;
+            case 7: array_push($array, "domingo"); break;
         }
     }
     if (sizeof($array) > 1) {

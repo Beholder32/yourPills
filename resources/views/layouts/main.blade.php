@@ -8,12 +8,12 @@
     <title>Your Pills</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
 </head>
 
-<body >
+<body>
     @yield('content')
 </body>
 
