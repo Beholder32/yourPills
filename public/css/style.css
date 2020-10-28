@@ -19,7 +19,7 @@ body {
     transform: translate(-50%, max(-50%, -45vh));
     padding: 50px;
 
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
     font-size: 18px;
 
@@ -174,9 +174,17 @@ h5 {
 }
 
 .btn {
+    background-color: white;
     display: inline-block;
+    border: none;
+    border-radius: 10px;
     width: 62px;
     margin-left: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: whitesmoke;
 }
 
 .text {

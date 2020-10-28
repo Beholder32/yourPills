@@ -10,8 +10,8 @@
         <?php
         $link = 'edit/' . $row -> id;
         ?>
-        <button id="edit" class="btn" onclick="window.location='{{ url($link) }}'">Edit</button>
-        <button id="delete" class="btn">Del</button>
+        <button id="edit" class="btn fa fa-edit" onclick="window.location='{{ url($link) }}'"></button>
+        <button id="delete" class="btn fa fa-trash"></button>
     </div>
     <div class="information">
         <?php
