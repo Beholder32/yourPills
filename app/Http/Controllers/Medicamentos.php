@@ -31,7 +31,11 @@ class Medicamentos extends Controller {
 
     public function removerow(Request $req) {
         $row = Imputs::find($req -> id);
-        $row -> delete();
+        if (!$row == null) {
+            $row -> delete();
+        }
+        
+        return redirect('list');
     }
 
     public function editrow($id) {

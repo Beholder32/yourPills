@@ -36,10 +36,6 @@
                     method: "get",
                     data: {
                         id: id
-                    },
-                    success: function(data) {
-                        // Recarga al eliminar para ver cambios
-                        window.location.href="{{ url('list') }}";
                     }
                 });
             }
