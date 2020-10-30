@@ -5,13 +5,10 @@
     @if(!empty($rows))
     <div class="title">Lista de medicamentos</div>
     @foreach ($rows as $row)
-    <div id="row" class="rows" data-rowId={{ $row -> id }}>
+    <div id="row" class="rows" data-rowId={{ Crypt::encrypt($row -> id) }}>
         <p id="name" class="text"> {{ $row -> Nombre }}</p>
-        <?php
-        $link = 'edit/' . $row -> id;
-        ?>
-        <button id="edit" class="btn" onclick="window.location='{{ url($link) }}'">Edit</button>
-        <button id="delete" class="btn">Del</button>
+        <button id="edit" class="btn fa fa-edit"></button>
+        <button id="delete" class="btn fa fa-trash"></button>
     </div>
     <div class="information">
         <?php
@@ -28,8 +25,15 @@
     $(document).ready(function() {
         $('.information').hide();
 
+        $('.rows #edit').click(function() {
+            let id = $(this).parent().attr('data-rowId');  // Eliminar la row con este id.
+            console.log(id);
+            window.location.href=`edit/${id}`;
+        });
+
         $('.rows #delete').click(function() {
             let id = $(this).parent().attr('data-rowId');  // Eliminar la row con este id.
+            console.log(id);
             if (confirm("Seguro que quieres eliminar?")) {
                 $.ajax({
                     url: "{{ route('list.removerow') }}",
@@ -37,9 +41,9 @@
                     data: {
                         id: id
                     },
-                    success: function(data) {
-                        // Recarga al eliminar para ver cambios
-                        window.location.href="{{ url('list') }}";
+                    cache: false,
+                    success: function() {
+                        window.location.reload();
                     }
                 });
             }

@@ -4,7 +4,7 @@
 <form action="/submitUpdate" method="POST" class="authbox" id="form">
     @csrf
     @foreach ($row as $element)
-    <input type="hidden" name="id" value="{{ $element -> id }}">
+    <input type="hidden" name="id" value="{{ Crypt::encrypt($element -> id) }}">
     <div class="title">Usuario</div>
     <div class="subTitle">Actualiza los datos del medicamento</div>
     <h5 class="inputType">Nombre</h5>

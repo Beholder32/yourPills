@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Imputs;
+use Illuminate\Support\Facades\Crypt;
 
 class Medicamentos extends Controller {
     function save(Request $req){
@@ -30,13 +31,15 @@ class Medicamentos extends Controller {
     }
 
     public function removerow(Request $req) {
-        $row = Imputs::find($req -> id);
-        $row -> delete();
+        $row = Imputs::find(Crypt::decrypt($req -> id));
+        if (!$row == null) {
+            $row -> delete();
+        }
     }
 
     public function editrow($id) {
         // Intento acceder al editor de esa row especifica si existe, si no devuelve a list.
-        $row = Imputs::where('id', $id) -> get();
+        $row = Imputs::where('id', Crypt::decrypt($id)) -> get();
         if (!$row -> isEmpty()){
             return view('edit', compact('row'));
         }
@@ -46,7 +49,7 @@ class Medicamentos extends Controller {
     }
 
     function update(Request $req){
-        $id = $req -> id;
+        $id = Crypt::decrypt($req -> id);
 
         $Nombre = $req -> nombre;
 
